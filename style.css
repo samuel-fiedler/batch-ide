@@ -1,0 +1,74 @@
+body {
+  background-color: var(--backgroundColor);
+  color: var(--color);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  margin: 0px;
+}
+
+@media screen {
+
+  main {
+    display: grid;
+    grid-template-columns: 66% 33%;
+    grid-template-rows: 20em 1fr;
+    grid-template-areas: "source errors"
+      "output output";
+    height: calc(100vh - 10em);
+    width: calc(100vw - 2em);
+  }
+
+}
+
+main > section {
+  grid-area: source;
+}
+
+#source {
+  background-color: var(--backgroundColor);
+  border: 1px solid var(--color);
+  caret-color: var(--color);
+  color: var(--color);
+  height: calc(100% - 5em - 2px);
+}
+
+#source,
+#output,
+#errors {
+  margin: 0.5em;
+  width: calc(100% - 3em - 2px);
+  padding: 0.5em;
+}
+
+#errors {
+  border: 1px solid var(--color);
+  grid-area: errors;
+  color: var(--errorColor);
+  overflow: scroll;
+}
+
+#output {
+  border: 1px solid var(--color);
+  grid-area: output;
+  overflow: scroll;
+  font-size: 12px;
+  height: calc(100% + 7em - 2px);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --backgroundColor: #fff;
+    --color: #000;
+    --errorColor: #f00;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --backgroundColor: #000;
+    --color: #fff;
+    --errorColor: #f00;
+  }
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="de">
+
+  <head>
+    <meta charset="utf-8" />
+    <title>Batch IDE</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <h1>Batch IDE</h1>
+    <noscript>For the Batch IDE you need JavaScript!</noscript>
+    <main>
+      <section>
+        <textarea id="source">REM This is the input box. </textarea>
+        <label>Parameters from you: <input id="argv"/></label> <button id="run">Execute Batch</button> <button id="stop">Stop Execution</button><br />
+      </section>
+      <pre id="errors">ERRORS</pre>
+      <pre id="output">OUTPUT</pre>
+    </main>
+    <script src="functions.js"></script>
+    <script src="interpreter.js"></script>
+    <script>
+      var outputElem = document.getElementById("output");
+      var errorElem = document.getElementById("errors");
+      var input = prompt;
+      document.getElementById("run").addEventListener("click", function() {
+        variables = {};
+        var inputArgv = split(document.getElementById("argv").value);
+        for (var i = 0; i < inputArgv.length; i++) {
+          variables[i + 1] = inputArgv[i];
+        }
+        document.getElementById("errors").innerHTML = "ERRORS: \n";
+        document.getElementById("output").innerHTML = "";
+        var source = document.getElementById("source").value;
+        interpret(source);
+      });
+      document.getElementById("stop").addEventListener("click", function() {
+        stop();
+      });
+
+      function stop() {
+        runAllowed = false;
+      }
+
+    </script>
+  </body>
+
+</html>
